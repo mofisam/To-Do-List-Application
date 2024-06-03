@@ -1,0 +1,8 @@
+Flask
+Flask-RESTful
+Flask-Login
+Flask-JWT-Extended
+mysql-connector-python
+WTForms
+Flask-Migrate
+
