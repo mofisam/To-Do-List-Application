@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Route, Routes} from 'react-router-dom';
-import LoginPage from './components/LoginPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import Navbar from './components/Navbar';
-import HomePage from './components/HomePage';
+import HomePage from './pages/HomePage';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
+import Dashboard from './pages/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './context/AuthContext';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -27,24 +31,29 @@ const App = () => {
       <div>
         <Navbar />
           <Routes>
-          <Route path="/" exact element={<HomePage/>} />
-          <Route path="/login" element={<LoginPage/>} />
-          <Route path="/tasks" element={
-          <div><TaskForm addTask={addTask} />
-            <TaskList
-              tasks={tasks}
-              deleteTask={deleteTask}
-              toggleTaskCompletion={toggleTaskCompletion}
-            />
-          </div>}>
-            
-          </Route>
-          <Route path="/about" element={
-          <div><h2>About Page</h2>
-            <p>This is a simple task manager application.</p>
-          </div>} >
-            
-          </Route>
+            <Route path="/" exact element={<HomePage/>} />
+            <Route path="/login" element={<LoginPage/>} />
+            <Route path="/register" element={<RegisterPage/>} />
+            <Route path="/dashboard" component={<Dashboard/>} />
+            <Route path="*">
+              
+            </Route>
+            <Route path="/tasks" element={
+            <div><TaskForm addTask={addTask} />
+              <TaskList
+                tasks={tasks}
+                deleteTask={deleteTask}
+                toggleTaskCompletion={toggleTaskCompletion}
+              />
+            </div>}>
+              
+            </Route>
+            <Route path="/about" element={
+            <div><h2>About Page</h2>
+              <p>This is a simple task manager application.</p>
+            </div>} >
+              
+            </Route>
         </Routes>
       </div>
   );
