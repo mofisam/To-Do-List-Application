@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import {
-    BrowserRouter as Router,
-    Routes,
+    BrowserRouter as 
     Route,
     Navigate,
   } from 'react-router-dom';

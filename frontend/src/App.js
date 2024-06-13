@@ -7,7 +7,8 @@ import HomePage from './pages/HomePage';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import Dashboard from './pages/Dashboard';
-import ProtectedRoute from './components/ProtectedRoute';
+//import error_404_message from './componets/error_404_message';
+import  ProtectedRoute  from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 
 const App = () => {
@@ -28,16 +29,15 @@ const App = () => {
   };
 
   return (
+    <AuthProvider>
       <div>
         <Navbar />
           <Routes>
             <Route path="/" exact element={<HomePage/>} />
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/register" element={<RegisterPage/>} />
-            <Route path="/dashboard" component={<Dashboard/>} />
-            <Route path="*">
-              
-            </Route>
+            <ProtectedRoute path="/dashboard" element={<Dashboard/>} />
+            {/*<Route path="/sa" element={<error_404_message/>} />*/}
             <Route path="/tasks" element={
             <div><TaskForm addTask={addTask} />
               <TaskList
@@ -56,6 +56,7 @@ const App = () => {
             </Route>
         </Routes>
       </div>
+    </AuthProvider>
   );
 };
 
