@@ -7,7 +7,8 @@ import HomePage from './pages/HomePage';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import Dashboard from './pages/Dashboard';
-//import error_404_message from './componets/error_404_message';
+import AboutPage from './pages/About';
+//import NotFoundPage from './componets/error_404_message';
 import  ProtectedRoute  from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 
@@ -36,8 +37,8 @@ const App = () => {
             <Route path="/" exact element={<HomePage/>} />
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/register" element={<RegisterPage/>} />
-            <ProtectedRoute path="/dashboard" element={<Dashboard/>} />
-            {/*<Route path="/sa" element={<error_404_message/>} />*/}
+            <Route path="/dashboard" componet={<Dashboard/>} />
+            {/*<Route path="/sa" element={<NotFoundPage/>} />*/}
             <Route path="/tasks" element={
             <div><TaskForm addTask={addTask} />
               <TaskList
@@ -48,12 +49,7 @@ const App = () => {
             </div>}>
               
             </Route>
-            <Route path="/about" element={
-            <div><h2>About Page</h2>
-              <p>This is a simple task manager application.</p>
-            </div>} >
-              
-            </Route>
+            <Route path="/about" element={<AboutPage/>} />
         </Routes>
       </div>
     </AuthProvider>
